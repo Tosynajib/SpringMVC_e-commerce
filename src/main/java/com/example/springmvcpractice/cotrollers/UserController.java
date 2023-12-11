@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Objects;
+
 @Controller
 @RequestMapping("/user")
 @Slf4j
@@ -60,6 +62,41 @@ public class UserController {
         }
         return "redirect:/user/login";
     }
+
+    @PostMapping("/admin-sign-up")
+   public String signAdminUp(@ModelAttribute UsersDTO usersDTO){
+        Users users = usersService.saveUser.apply(new Users(usersDTO));
+       System.out.println("user details-----> {}"+ users);
+       return "admin-successful-register";
+   }
+
+   @GetMapping("/admin-sign-up")
+   public String signUpAdminPage(Model model){
+        model.addAttribute("user", new UsersDTO());
+        return "admin-signup";
+   }
+
+   @GetMapping
+   public ModelAndView adminLogInPage(){
+        return new ModelAndView("admin-login")
+                .addObject("user", new UsersDTO());
+   }
+
+   @PostMapping
+   public String loginAdminUser(@ModelAttribute UsersDTO usersDTO, HttpServletRequest request, Model model) {
+       Users users = usersService.findUserByAdminUsername.apply(usersDTO.getUsername());
+       log.info("admin's info --> {}" + users);
+       if (usersService.verifyUserPassword.apply(PasswordDTO.builder()
+               .password(usersDTO.getPassword())
+               .hashPassword(users.getPassword())
+               .build()) && Objects.equals(users.getRole(), "admin")) {
+           HttpSession session = request.getSession(true);
+           session.setAttribute("userID", users.getId());
+           return "redirect:/products/admin-view";
+       }
+       return "redirect:/user/admin-login";
+   }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session){

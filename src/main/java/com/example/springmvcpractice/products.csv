@@ -1,7 +1,7 @@
-categories,price,productName,quantity
-Electronics,23000,LG-Tv,12
-Furniture,34000,Ikea-chair,23
-Electronics,450000,macBook'17,10
-Electronics,456000,macBook'18,16
-Electronics,970000,Samsung,11
-Electronics,850000,Iphone'15,8
+categories,price,productName,quantity,image
+Electronics,23000,LG-Tv,12,https://res.cloudinary.com/gadibia/image/upload/v1612943210/HairX/Hair%20Goal%20Food/istock_000017142662small_qn3dbt.jpg
+Furniture,34000,Ikea-chair,23,https://res.cloudinary.com/gadibia/image/upload/v1612943210/HairX/Hair%20Goal%20Food/istock_000017142662small_qn3dbt.jpg
+Electronics,450000,macBook'17,10,https://res.cloudinary.com/gadibia/image/upload/v1612943210/HairX/Hair%20Goal%20Food/istock_000017142662small_qn3dbt.jpg
+Electronics,456000,macBook'18,16,https://res.cloudinary.com/gadibia/image/upload/v1612943210/HairX/Hair%20Goal%20Food/istock_000017142662small_qn3dbt.jpg
+Electronics,970000,Samsung,11,https://res.cloudinary.com/gadibia/image/upload/v1612943210/HairX/Hair%20Goal%20Food/istock_000017142662small_qn3dbt.jpg
+Electronics,850000,Iphone'15,8,https://res.cloudinary.com/gadibia/image/upload/v1612943210/HairX/Hair%20Goal%20Food/istock_000017142662small_qn3dbt.jpg

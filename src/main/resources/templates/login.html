@@ -1,22 +1,78 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head>
-    <style type="text/css">
-        input{
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: url('https://cdn.dribbble.com/users/4416537/screenshots/16106398/media/b822efefb69096ce35f34927fea12615.jpg?resize=400x300&vertical=center') center fixed;
+            background-size: cover;
+            animation: backgroundMove 20s infinite linear;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 100px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        input {
             display: block;
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
-    <meta charset="UTF-8">
     <title>Product Application</title>
 </head>
+
 <body>
-Log in
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="post" action="/user/login" th:object="${user}">
+        <label for="username">Username:</label>
+        <input id="username" name="username" th:field="*{username}" required>
 
-<form method="post" action="/user/login" th:object="${user}">
-    Username:<input th:field="*{username}">
-    Password:<input th:field="*{password}" type="password">
-    <button type="submit">Login</button>
+        <label for="password">Password:</label>
+        <input id="password" name="password" th:field="*{password}" type="password" required>
 
-</form>
+        <button type="submit">Login</button>
+    </form>
+</div>
 </body>
+
 </html>

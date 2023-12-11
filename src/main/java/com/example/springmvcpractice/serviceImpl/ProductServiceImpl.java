@@ -27,6 +27,14 @@ public class ProductServiceImpl {
         this.productRepositories = productRepositories;
     }
 
+    public Function<Product,Product> saveProducts = (product) -> productRepositories.save(product);
+
+    public void deleteProducts(Long id, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Product product = new Product();
+        productRepositories.deleteById(id);
+    }
+
     public Supplier<List<Product>> findAllProducts = ()->productRepositories.findAll();
 
     public Function<Long, Product> findById = (id)->

@@ -1,24 +1,182 @@
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Product Application</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--            background: url('https://miro.medium.com/v2/resize:fit:1224/0*qvMbqTTfsjBgaQUw') fixed;-->
+<!--            background-size: cover;-->
+<!--            background-position: center;-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            max-width: 800px;-->
+<!--            margin: 50px auto;-->
+<!--            padding: 20px;-->
+<!--            background: rgba(255, 255, 255, 0.8);-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        table, th, td {-->
+<!--            border: 1px solid #ddd;-->
+<!--        }-->
+
+<!--        th, td {-->
+<!--            padding: 12px;-->
+<!--            text-align: left;-->
+<!--        }-->
+
+<!--        th {-->
+<!--            background-color: #f2f2f2;-->
+<!--        }-->
+
+<!--        a {-->
+<!--            text-decoration: none;-->
+<!--            color: #3498db;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        a:hover {-->
+<!--            color: #1e70bf;-->
+<!--        }-->
+
+<!--        .checkout-btn {-->
+<!--            display: block;-->
+<!--            margin-top: 20px;-->
+<!--            padding: 10px;-->
+<!--            background-color: #3498db;-->
+<!--            color: #fff;-->
+<!--            text-align: center;-->
+<!--            border-radius: 5px;-->
+<!--            text-decoration: none;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        .checkout-btn:hover {-->
+<!--            background-color: #1e70bf;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>Welcome <span th:text="${userID}"></span></h1>-->
+<!--    <a href="/user/logout">Logout</a>-->
+
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Product Name</th>-->
+<!--            <th>Categories</th>-->
+<!--            <th>Price</th>-->
+<!--            <th>Quantity</th>-->
+<!--            <th>Add to Cart</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="product: ${products}">-->
+<!--            <td th:text="${product.productName}"></td>-->
+<!--            <td th:text="${product.categories}"></td>-->
+<!--            <td th:text="${product.price}"></td>-->
+<!--            <td th:text="${product.quantity}"></td>-->
+<!--            <td><a th:href="@{/products/add-cart(cart=${product.id})}">Add to cart</a></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <a class="checkout-btn" href="/products/payment">Proceed to Checkout</a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Product Application</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- W3.CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Custom Styles -->
+    <style>
+        /* Add your custom styles here */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(45deg, #F0FFFF, #7393B3, #6495ED, #6082B6);
+            animation: animateBackground 20s ease infinite;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #6495ED;
+        }
+        th {
+            background-color: #7393B3;
+        }
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
 </head>
 <body>
-Welcome <p th:text="${userID}"></p>
-<a href="/user/logout">logout</a>
+<div class="w3-container">
+    Welcome <p th:text="${userID}"></p>
+    <a href="/user/logout" class="w3-btn w3-blue">Logout</a>
+    <table class="w3-table-all w3-hoverable">
+        <div th:text="${cartItems}"></div>
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Categories</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Add to Cart</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product: ${products}">
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.categories}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td><a th:href="@{/products/add-cart(cart=${product.id})}" class="w3-btn w3-green">Add to Cart</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/products/payment" class="w3-btn w3-blue">Proceed to Checkout</a>
+</div>
 
-<table>
-    <div th:text="${cartItems}"></div>
-    <thead><td>Product Name</td><td>Categories</td><td>Price</td><td>Quantity</td><td>Add cart</td></thead>
-    <tr th:each="product: ${products}">
-        <td th:text="${product.productName}"></td>
-        <td th:text="${product.categories}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.quantity}"></td>
-        <td ><a th:href="@{/products/add-cart(cart=${product.id})}">Add to cart</a></td>
-    </tr>
-    <a href="/products/payment">Proceed checkout</a>
-</table>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+

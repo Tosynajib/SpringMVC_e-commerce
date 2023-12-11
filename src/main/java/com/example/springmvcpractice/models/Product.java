@@ -1,5 +1,6 @@
 package com.example.springmvcpractice.models;
 
+import com.example.springmvcpractice.dtos.ProductDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,4 +27,15 @@ public class Product {
     private BigDecimal price;
     private String productName;
     private Long quantity;
+    private String image;
+
+    public Product(ProductDto productDto){
+        this.categories=productDto.getCategory();
+        this.productName=productDto.getName();
+        this.price=productDto.getPrice();
+        this.quantity=productDto.getQuantity();
+        this.image=productDto.getImage();
+    }
+
 }
+

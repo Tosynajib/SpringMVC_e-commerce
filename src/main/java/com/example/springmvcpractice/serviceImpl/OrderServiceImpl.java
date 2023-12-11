@@ -22,20 +22,21 @@ public class OrderServiceImpl {
         this.usersService = usersService;
     }
 
-    public Function<Order, Order> saveOrder = (order) -> orderRepositories.save(order);
+    public Function<Order,Order> saveOrder= (order)->orderRepositories.save(order);
 
-    public String makePayment(HttpSession session, Model model){
+    public String makePayment(HttpSession session, Model model) {
         Users user = usersService.findUserById.apply((Long) session.getAttribute("userID"));
         Order order = (Order) session.getAttribute("order");
         if (user.getBalance().doubleValue()<order.getTotalPrice().doubleValue()){
-            model.addAttribute("paid","Insufficient balance in your account!");
+            model.addAttribute("paid", "Insufficient balance na dey your account!");
             return "checkout";
         }
         user.setBalance(user.getBalance().subtract(order.getTotalPrice()));
         usersService.saveUser.apply(user);
         Order order1 = saveOrder.apply(order);
-        session.setAttribute("order", null);
+        session.setAttribute( "order", null);
         model.addAttribute("paid", "Payment was successful!");
         return "successfully-paid";
     }
+
 }

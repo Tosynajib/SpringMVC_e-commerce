@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Product Application</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: white;
+      transition: background-color 0.3s;
+      padding: 10px;
+    }
+
+    .menu a:hover {
+      background-color: #555;
+    }
+
+    .background-instruments {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      animation: float 20s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        background-image: url('https://foodtruckempire.com/wp-content/uploads/Grocery-Store-Business-Name-Ideas.jpg');
+      }
+      25% {
+        background-image: url('https://etimg.etb2bimg.com/photo/101674563.cms');
+      }
+      50% {
+        background-image: url('https://i.pinimg.com/736x/26/68/1d/26681d8d7e4141d00b92f056caa7f10e.jpg');
+      }
+      75% {
+        background-image: url('https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/f/b/a/fba986499548e23452f1ef55e2562e6858fd58ed.jpeg');
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="menu">
+<!--    <a href="/index.html">Home</a>-->
+<!--    <a href="/shop.html">Shop</a>-->
+<!--    <a href="/about.html">About us</a>-->
+<!--    <a href="/contact.html">Contact</a>-->
+    <a href="/user/login">Login</a>
+    <a href="/user/register" class="signup-button">Sign up</a>
+    <a href="/user/admin-sign-up">Admin Sign up</a>
+  </div>
+</div>
+
+<img src="" class="background-instruments" alt="Background Instruments">
+<a href="/user/register">Sign up</a><br>
+<a href="/user/login">Login</a>
+View the product
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script>
+  // You can add additional scripts or animations here if needed
+</script>
+
+</body>
+</html>

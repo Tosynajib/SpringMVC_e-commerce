@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Users {
-    //    TO REMOVE THE RED LINE UNDER USERS
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,13 +25,17 @@ public class Users {
     private String imageUrl;
     private String password;
     private String fullName;
+    private String role;
     private BigDecimal balance;
+
+
 
     public Users(UsersDTO usersDTO) {
         this.username = usersDTO.getUsername();
-        this.password = BCrypt.withDefaults()
-                .hashToString(12,usersDTO.getPassword().toCharArray());
-        this.username = usersDTO.getFullName();
+        this.password =  BCrypt.withDefaults()
+                .hashToString(12, usersDTO.getPassword().toCharArray());
+        this.fullName = usersDTO.getFullName();
+        this.role = usersDTO.getRole();
         this.balance = new BigDecimal(2500000);
     }
 }
